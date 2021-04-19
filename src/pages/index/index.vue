@@ -66,7 +66,7 @@ export default {
       let a = 10
 
 
-      let b= 20
+      let b= 200;;;;
       try {
         const res = await getUserInfo({ id: 'showtoast' })
         console.log('res-get:', res)
