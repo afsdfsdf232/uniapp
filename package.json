@@ -7,7 +7,7 @@
     "build": "npm run build:h5",
     "lint": "eslint --ext .js --ext .jsx --ext .vue src/",
     "lint:fix": "eslint --fix --ext .js --ext .jsx --ext .vue src/",
-    "precommit":"lint-staged",
+    "precommit": "lint-staged",
     "build:app-plus": "cross-env NODE_ENV=production UNI_PLATFORM=app-plus vue-cli-service uni-build",
     "build:custom": "cross-env NODE_ENV=production uniapp-cli custom",
     "build:h5": "cross-env NODE_ENV=production UNI_PLATFORM=h5 vue-cli-service uni-build",
@@ -44,10 +44,14 @@
     "test:mp-baidu": "cross-env UNI_PLATFORM=mp-baidu jest -i",
     "test:mp-weixin": "cross-env UNI_PLATFORM=mp-weixin jest -i"
   },
-  "husky":{
-    "hooks":{
-      "pre-commit":"npm run lint:fix"
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:fix"
     }
+  },
+  "lint-staged": {
+    "**/*.js": "eslint --ext .js",
+    "**/*.vue": "eslint --ext .vue"
   },
   "dependencies": {
     "@dcloudio/uni-app-plus": "2.0.0-31820210406002",
