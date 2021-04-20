@@ -63,10 +63,6 @@ export default {
   onLoad () {},
   methods: {
     async getUserInfo () {
-      let a = 1;;;;;
-      let b= 200;;;;;
-
-      
       try {
         const res = await getUserInfo({ id: 'showtoast' })
         console.log('res-get:', res)

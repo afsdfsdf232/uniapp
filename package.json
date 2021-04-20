@@ -46,7 +46,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint:fix"
+      "pre-commit": "npm run lint"
     }
   },
   "dependencies": {
