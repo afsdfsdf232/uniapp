@@ -44,7 +44,7 @@ export function request ({
         uni.hideLoading()
         uni.showToast({
           title: '加载失败',
-          duration: 3000,
+          duration: 2000,
           icon: 'loading'
         })
         reject(err)

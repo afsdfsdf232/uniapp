@@ -24,6 +24,7 @@
 
 <script>
 import { getUserInfo } from '@/api/user'
+import { TestModule } from '@/utils/nativeCommon'
 export default {
   data () {
     return {
@@ -69,18 +70,16 @@ export default {
       } catch (err) {}
 
       //   #ifdef APP-PLUS
-      const testModule = uni.requireNativePlugin('TestModule')
-      console.log('testModule:', uni.requireNativePlugin)
-      if (testModule && testModule.getUserInfo) {
-        testModule.getUserInfo({ name: '我是h5页面调用接口' }, (res) => {
-          console.log('res:', res)
-          this.userInfo = res
-          uni.showToast({
-            title: '获取成功',
-            icon: 'none'
-          })
+      const testModules = uni.requireNativePlugin('TestModule')
+      console.log('testModules:', uni.requireNativePlugin, testModules)
+      TestModule('getUserInfo', { name: '我是h5页面调用接口' }, (res) => {
+        console.log('res:', res)
+        this.userInfo = res
+        uni.showToast({
+          title: '获取成功',
+          icon: 'none'
         })
-      }
+      })
       // #endif
 
       // #ifndef APP-PLUS
@@ -93,16 +92,16 @@ export default {
     },
     back () {
       // #ifdef APP-Plus
-      const testModule = uni.requireNativePlugin('TestModule')
-      if (testModule && testModule.back) {
-        testModule.back({ name: '我是要返回原生页面' }, () => {
-          uni.showToast({
-            title: '返回成功',
-            icon: 'none'
-          })
+      const testModules = uni.requireNativePlugin('TestModule')
+      console.log('testModules:', testModules)
+      TestModule('back', { name: '我是要返回原生页面' }, () => {
+        uni.showToast({
+          title: '返回成功',
+          icon: 'none'
         })
-      }
+      })
       //   #endif
+
       // #ifndef APP-Plus
       uni.showToast({
         title: 'H5平台返回成功',
