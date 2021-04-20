@@ -51,6 +51,9 @@
             "ios" : {},
             /* ios打包配置 */
             "sdkConfigs" : {}
+        },
+        "statusbar":{
+            "immersed": false 
         }
     },
     /* SDK配置 */

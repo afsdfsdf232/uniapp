@@ -5,8 +5,8 @@
   "scripts": {
     "serve": "npm run dev:h5",
     "build": "npm run build:h5",
-    "lint": "eslint --ext .js --ext .jsx --ext .vue src/",
-    "lint:fix": "eslint --fix --ext .js --ext .jsx --ext .vue src/",
+    "lint": "eslint --ext .js --ext .vue src/",
+    "lint:fix": "eslint --fix --ext .js --ext .vue src/",
     "precommit": "lint-staged",
     "build:app-plus": "cross-env NODE_ENV=production UNI_PLATFORM=app-plus vue-cli-service uni-build",
     "build:custom": "cross-env NODE_ENV=production uniapp-cli custom",
@@ -99,7 +99,6 @@
     "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-vue": "^7.9.0",
     "jest": "^25.4.0",
-    "lint-staged": "^10.5.4",
     "mini-types": "*",
     "miniprogram-api-typings": "*",
     "node-sass": "^5.0.0",
