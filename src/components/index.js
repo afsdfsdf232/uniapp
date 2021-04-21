@@ -1,47 +1,21 @@
 import { compose } from '@/utils'
 const components = require.context('./', false, /\.vue$/)
-const letters = {
-  A: '-a',
-  B: '-b',
-  C: '-c',
-  D: '-d',
-  E: '-e',
-  F: '-f',
-  G: '-g',
-  H: '-h',
-  I: '-i',
-  J: '-j',
-  K: '-k',
-  L: '-l',
-  M: '-m',
-  N: '-n',
-  O: '-o',
-  P: '-p',
-  Q: '-q',
-  R: '-r',
-  S: '-s',
-  T: '-t',
-  U: '-u',
-  V: '-v',
-  W: '-w',
-  X: '-x',
-  Y: '-y',
-  Z: '-z'
+// 格式化字母，判断是否大写字母，是转为小写并添加'-'前缀
+const formatLetter = str => {
+  if (str === str.toUpperCase()) {
+    return '-' + str.toLowerCase()
+  }
+  return str
 }
-// 格式化全局组件名称，g- 开头，后面为组件名称，大写转小写，并且以 ‘-’ 拼接，例如：NavBar.vue => g-nav-bar
+// 格式化全局组件名称，g- 开头，后面为组件名称，例如：NavBar.vue => g-nav-bar
 const formatComponentName = fileName => {
   const names = ['g']
   const len = fileName.length
   for (let i = 0; i < len; i++) {
-    if (!letters[fileName[0]]) {
+    if (fileName[0] === fileName[0].toLowerCase()) {
       throw new Error(`${fileName}组件名称需以大写字母开头`)
     }
-    // eslint-disable-next-line
-    if (!!letters[fileName[i]]) {
-      names.push(letters[fileName[i]])
-    } else {
-      names.push(fileName[i])
-    }
+    names.push(formatLetter(fileName[i]))
   }
   return names.join('')
 }
