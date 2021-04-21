@@ -142,3 +142,26 @@ export const memorize = fn => {
     return cache[_args] || (cache[_args] = fn(...args)) // 先从缓存中取，存在直接取值否则执行计算
   }
 }
+
+// 防抖
+export const debounce = (fn, wait = 500) => {
+  let timer = null
+  return (...args) => {
+    if (timer) clearTimeout(timer)
+    timer = setTimeout(() => {
+      fn(...args)
+    }, wait)
+  }
+}
+
+//  节流
+export const throttling = (fn, wait = 500) => {
+  let prev = 0
+  return (...args) => {
+    const now = Date.now()
+    if (now - prev > wait) {
+      fn(...args)
+      prev = now
+    }
+  }
+}
