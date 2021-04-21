@@ -130,3 +130,15 @@ export const deepClone = source => {
   }
   return source
 }
+
+// 组合式函数，执行顺序从右至左顺序执行
+export const compose = (...fns) => (...args) => fns.reduceRight((acc, fn) => fn(acc), ...args)
+
+// 缓存函数，用于存储大量数据的重复计算
+export const memorize = fn => {
+  const cache = {} // 存储缓存数据对象
+  return (...args) => {
+    const _args = JSON.stringify(args) // 将参数作为cache的key
+    return cache[_args] || (cache[_args] = fn(...args)) // 先从缓存中取，存在直接取值否则执行计算
+  }
+}

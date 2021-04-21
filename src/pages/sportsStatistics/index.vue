@@ -1,6 +1,6 @@
 <template>
     <view>
-        <g-nav/>
+        <g-nav-bar/>
         <view>运动统计</view>
     </view>
 </template>
