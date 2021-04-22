@@ -1,6 +1,6 @@
 const proTarget = '/'
 
-const devTarget = 'https://uniapp.dcloud.io'
+const devTarget = 'https://github.com' // 'https://uniapp.dcloud.io'
 
 module.exports = {
   proTarget,

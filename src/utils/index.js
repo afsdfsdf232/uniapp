@@ -4,7 +4,7 @@
  * @param {string} cFormat
  * @returns {string | null}
  */
-export function parseTime (time, cFormat) {
+export function parseTime(time, cFormat) {
   if (arguments.length === 0 || !time) {
     return null
   }
@@ -50,7 +50,7 @@ export function parseTime (time, cFormat) {
  * @param {string} option
  * @returns {string}
  */
-export function formatTime (time, option) {
+export function formatTime(time, option) {
   if (('' + time).length === 10) {
     time = parseInt(time) * 1000
   } else {
@@ -58,7 +58,6 @@ export function formatTime (time, option) {
   }
   const d = new Date(time)
   const now = Date.now()
-
   const diff = (now - d) / 1000
 
   if (diff < 30) {
@@ -91,7 +90,7 @@ export function formatTime (time, option) {
 export const deepClone = source => {
   const cache = []
 
-  function findCache (source) {
+  function findCache(source) {
     for (let i = 0; i < cache.length; i++) {
       if (cache[i][0] === source) {
         return cache[i][1]
@@ -145,7 +144,7 @@ export const memorize = fn => {
 
 // 防抖
 export const debounce = (fn, wait = 500) => {
-  let timer = null
+  let timer
   return (...args) => {
     if (timer) clearTimeout(timer)
     timer = setTimeout(() => {
@@ -164,4 +163,35 @@ export const throttling = (fn, wait = 500) => {
       prev = now
     }
   }
+}
+
+// 获取过去或者未来n天的日期和周
+export const getNTime = (n = 0) => {
+  if (isNaN(n)) throw new Error(`参数“${n}”不是一个数字，期待值是一个数字`)
+  const dates = []
+  const len = Math.abs(n)
+  const positive = n > 0
+  const weeks = ['日', '一', '二', '三', '四', '五', '六']
+  const timestamp = new Date().getTime()
+  const getScure = (tims) => {
+    const now = new Date(tims)
+    const D = now.getDate()
+    const M = now.getMonth() + 1
+    return {
+      y: now.getFullYear(), // 年
+      m: M > 9 ? M : '0' + M, // 月
+      d: D > 9 ? D : '0' + D, // 日
+      w: weeks[now.getDay()] // 周
+    }
+  }
+  // 保存当天
+  dates.push(getScure(timestamp))
+  for (let i = 1; i < len; i++) {
+    if (positive) {
+      dates.push(getScure(timestamp + i * 24 * 3600 * 1000))
+    } else {
+      dates.push(getScure(timestamp - i * 24 * 3600 * 1000))
+    }
+  }
+  return dates
 }

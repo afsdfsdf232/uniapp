@@ -6,59 +6,25 @@
     <button @click="getUserInfo">获取用户信息</button>
     <view class="text">登录用户信息: {{ userInfo }}</view>
     <button @click="back">返回原生页面</button>
-    <block>
-      <!--u-skeleton-circle 绘制圆形-->
-      <image class="userinfo-avatar u-skeleton-circle" :src="userInfo"></image>
-      <!--u-skeleton-fillet 绘制圆角矩形-->
-      <text class="u-skeleton-fillet">{{ userInfo }}</text>
-    </block>
-    <!-- <u-action-sheet :list="list" v-model="show"></u-action-sheet> -->
-    <u-skeleton
-      :loading="loading"
-      :animation="true"
-      bgColor="#FFF"
-    ></u-skeleton>
-    <u-swiper :effect3d="true" class="swiper" :list="swiperList"></u-swiper>
+    <text class="u-skeleton-fillet">{{ userInfo }}</text>
+    <button @click="getS">getSetting</button>
+    <input class="uni-input" maxlength="10" v-model="user" placeholder="请输入电话号码" />
+    <input class="uni-input" type="password" v-model="pwd"  placeholder="请输入密码" />
+    <button @click="login">登录</button>
   </view>
 </template>
 
 <script>
-import { getUserInfo } from '@/api/user'
+import { getUserInfo, setting } from '@/api/user'
 import { TestModule } from '@/utils/nativeCommon'
+import { getNTime } from '@/utils'
 export default {
   data () {
     return {
       title: '测试页面',
       userInfo: null,
-      loading: false,
-      swiperList: [
-        {
-          image: 'https://cdn.uviewui.com/uview/swiper/1.jpg',
-          title: '昨夜星辰昨夜风，画楼西畔桂堂东'
-        },
-        {
-          image: 'https://cdn.uviewui.com/uview/swiper/2.jpg',
-          title: '身无彩凤双飞翼，心有灵犀一点通'
-        },
-        {
-          image: 'https://cdn.uviewui.com/uview/swiper/3.jpg',
-          title: '谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳'
-        }
-      ],
-      list: [
-        {
-          text: '点赞',
-          color: 'blue',
-          fontSize: 28
-        },
-        {
-          text: '分享'
-        },
-        {
-          text: '评论'
-        }
-      ],
-      show: true
+      user: '',
+      pwd: ''
     }
   },
   onLoad () {},
@@ -108,6 +74,13 @@ export default {
         icon: 'none'
       })
       // #endif
+    },
+    getS () {
+      setting({}).then(res => console.log('ress:', res)).catch(err => console.log('err:', err))
+    },
+    login () {
+      console.log(this.user, this.pwd)
+      console.log('getNTime:', getNTime(-10))
     }
   }
 }
@@ -119,33 +92,5 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin: 200rpx auto 50rpx auto;
-}
-
-.text-area {
-  display: flex;
-  justify-content: center;
-}
-
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
-}
-.text {
-  font-size: 28rpx;
-}
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-.swiper {
-  width: 750rpx;
 }
 </style>

@@ -4,7 +4,7 @@ const BASE_URL = process.env.NODE_ENV === 'development' ? '' : proTarget
 
 const HEADERS = {
   'content-type': 'application/json',
-  token: getToken()
+  Authorization: getToken()
 }
 const TIMEOUT = 5000
 
@@ -27,7 +27,7 @@ export function request ({
       method,
       timeout: TIMEOUT,
       success: res => {
-        if (res.code === 200) {
+        if (res.code === 0) {
           resolve(res.data)
         } else {
           // 判断code做一些权限操作

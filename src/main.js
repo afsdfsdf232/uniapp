@@ -2,11 +2,11 @@ import Vue from 'vue'
 import App from './App'
 import uView from 'uview-ui'
 import store from '@/store'
-import regGlobalComponent from '@/components'
+import regGlobalComponents from '@/components'
 Vue.use(uView)
 Vue.config.productionTip = false
 
-regGlobalComponent(Vue)
+regGlobalComponents(Vue)
 App.mpType = 'app'
 
 const app = new Vue({

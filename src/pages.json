@@ -4,19 +4,22 @@
 	},
 	"pages": [
 		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		},
+		{
 			"path": "pages/home/index"
+		},
+		{
+			"path": "pages/demo/index"
 		},
 		{
 			"path": "pages/sportsStatistics/index"
 		},
 		{
 			"path": "pages/classManagement/index"
-		},
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
 		}
 	],
 	"globalStyle": {
@@ -25,5 +28,9 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"navigationStyle": "custom"
-	}
+	},
+	"app-plus": {
+    "softinputNavBar": "none",
+		"softinputMode": "adjustResize"
+}
 }

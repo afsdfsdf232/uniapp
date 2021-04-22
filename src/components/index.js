@@ -11,10 +11,10 @@ const formatLetter = str => {
 const formatComponentName = fileName => {
   const names = ['g']
   const len = fileName.length
+  if (fileName[0] === fileName[0].toLowerCase()) {
+    throw new Error(`${fileName}组件名称需以大写字母开头`)
+  }
   for (let i = 0; i < len; i++) {
-    if (fileName[0] === fileName[0].toLowerCase()) {
-      throw new Error(`${fileName}组件名称需以大写字母开头`)
-    }
     names.push(formatLetter(fileName[i]))
   }
   return names.join('')
@@ -22,10 +22,10 @@ const formatComponentName = fileName => {
 // 获取组件文件名
 const replaceFileName = fileName => fileName.replace(/(\.\/|\.vue)/g, '')
 
-const composeName = compose(formatComponentName, replaceFileName)
+const componentName = compose(formatComponentName, replaceFileName)
 
-export default function regGlobalComponent (Vue) {
+export default function regGlobalComponents (Vue) {
   components.keys().forEach(file => {
-    Vue.component(composeName(file), components(file).default)
+    Vue.component(componentName(file), components(file).default)
   })
 }

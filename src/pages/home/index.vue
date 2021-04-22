@@ -19,6 +19,30 @@ export default {
         {
           title: '班级管理',
           url: '/pages/classManagement/index'
+        },
+        {
+          title: '运动统计',
+          url: '/pages/sportsStatistics/index'
+        },
+        {
+          title: '班级管理',
+          url: '/pages/classManagement/index'
+        },
+        {
+          title: '运动统计',
+          url: '/pages/sportsStatistics/index'
+        },
+        {
+          title: '班级管理',
+          url: '/pages/classManagement/index'
+        },
+        {
+          title: '运动统计',
+          url: '/pages/sportsStatistics/index'
+        },
+        {
+          title: '班级管理',
+          url: '/pages/classManagement/index'
         }
       ]
     }
@@ -39,6 +63,7 @@ export default {
       text-align: center;
       font-size: 26rpx;
       margin-right: 20rpx;
+      margin-bottom: 20rpx;
       border-radius: 6rpx;
       color: #fff;
       background-color: $u-type-warning-dark;
