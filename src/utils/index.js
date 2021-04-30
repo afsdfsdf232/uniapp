@@ -4,7 +4,7 @@
  * @param {string} cFormat
  * @returns {string | null}
  */
-export function parseTime(time, cFormat) {
+export function parseTime (time, cFormat) {
   if (arguments.length === 0 || !time) {
     return null
   }
@@ -50,7 +50,7 @@ export function parseTime(time, cFormat) {
  * @param {string} option
  * @returns {string}
  */
-export function formatTime(time, option) {
+export function formatTime (time, option) {
   if (('' + time).length === 10) {
     time = parseInt(time) * 1000
   } else {
@@ -90,7 +90,7 @@ export function formatTime(time, option) {
 export const deepClone = source => {
   const cache = []
 
-  function findCache(source) {
+  function findCache (source) {
     for (let i = 0; i < cache.length; i++) {
       if (cache[i][0] === source) {
         return cache[i][1]

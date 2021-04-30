@@ -1,0 +1,138 @@
+// 全局字体库
+@font-face {
+  font-family: Oswald Bold;
+  src: url('~@/static/font/Oswald-Bold.ttf');
+}
+
+// 布局
+.flex {
+  display: flex;
+}
+
+.f-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.f-x-center {
+  justify-content: center;
+}
+
+.f-y-center {
+  align-items: center;
+}
+
+.flex1 {
+  flex: 1;
+}
+
+.t-c {
+  text-align: center;
+}
+
+.t-l, .left {
+  text-align: left;
+}
+
+.t-r, .right {
+  text-align: right;
+}
+
+.mt32 {
+  margin-top: 32rpx;
+}
+
+// 字体
+.f-fo {
+  font-family: Oswald Bold;
+}
+
+.f48 {
+  font-size: 48rpx;
+}
+
+.f40 {
+  font-size: 40rpx;
+  font-weight: 600;
+}
+
+.f36 {
+  font-size: 36rpx;
+}
+
+.f34 {
+  font-size: 34rpx;
+}
+
+.f32 {
+  font-size: 32rpx;
+}
+
+.f30 {
+  font-size: 30rpx;
+}
+
+.f28 {
+  font-size: 28rpx;
+}
+
+.f24 {
+  font-size: 24rpx;
+}
+
+.f22{
+  font-size: 22rpx;
+}
+
+.f-w4 {
+  font-weight: 400;
+}
+
+.f-w5 {
+  font-weight: 500;
+}
+
+.f-w6 {
+  font-weight: 600;
+}
+
+.f-w8 {
+  font-weight: 800;
+}
+
+.f-w {
+  font-weight: bold;
+}
+
+
+// 图标
+
+.down-icon {
+  width: 0;
+  height: 0;
+  border-left: 10rpx solid transparent;
+  border-right: 10rpx solid transparent;
+  border-top: 10rpx solid transparent;
+  border-radius: 2rpx;
+}
+
+.up-icon {
+  margin-bottom: 2rpx;
+  width: 0;
+  height: 0;
+  border-left: 10rpx solid transparent;
+  border-right: 10rpx solid transparent;
+  border-bottom: 10rpx solid transparent;
+  border-radius: 2rpx;
+}
+
+
+.hidden-scroll{
+  height: 100vh;
+  overflow: hidden;
+}
+
+.open-scroll{
+  height: auto;
+  overflow: auto;
+}

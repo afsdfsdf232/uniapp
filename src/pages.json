@@ -1,8 +1,16 @@
 {
 	"easycom": {
-		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+		"autoscan": true,
+		"custom":{
+			"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue",
+			"^ug-(.*)": "@/components/$1.vue"
+		}
+		
 	},
 	"pages": [
+		{
+			"path":"pages/login/index"
+		},
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -20,6 +28,15 @@
 		},
 		{
 			"path": "pages/classManagement/index"
+		},
+		{
+			"path":"pages/classManagement/pages/classStudents"
+		},
+		{
+			"path":"pages/classManagement/pages/planDetail"
+		},
+		{
+			"path":"pages/classManagement/pages/schedule"
 		}
 	],
 	"globalStyle": {
@@ -30,7 +47,6 @@
 		"navigationStyle": "custom"
 	},
 	"app-plus": {
-    "softinputNavBar": "none",
-		"softinputMode": "adjustResize"
-}
+		"bounce": "none"
+	}
 }

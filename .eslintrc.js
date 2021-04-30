@@ -15,7 +15,8 @@ module.exports = {
     'vue'
   ],
   rules: {
-    'prefer-regex-literals': 'off'
+    'prefer-regex-literals': 'off',
+    'vue/no-mutating-props': 'off'
   },
   globals: {
     Atomics: 'readonly',

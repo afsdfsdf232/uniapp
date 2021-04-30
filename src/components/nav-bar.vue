@@ -1,5 +1,5 @@
 <template>
-    <view class="base-class">我是公共组件</view>
+    <view class="base-class">强基四川</view>
 </template>
 
 <style lang="scss" scoped>
@@ -8,7 +8,8 @@
         height: 200px;
         line-height: 200px;
         text-align: center;
-        background-color: aquamarine;
+        font-size: 24px;
+        background-color: #FF8640;
         color: #fff;
     }
 </style>
