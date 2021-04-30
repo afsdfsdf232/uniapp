@@ -46,7 +46,7 @@
           src="../static/images/close-icon.png"
           mode="scaleToFill"
         /></view>
-        <view style="margin-top:66rpx; box-sizing: border-box; padding: 50rpx 40rpx 40rpx">
+        <view style="margin-top:66rpx; box-sizing: border-box; padding: 0 40rpx">
           <slot />
         </view>
       </view>

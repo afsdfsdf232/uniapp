@@ -28,25 +28,15 @@ export default {
     return {
       eopts: {
         legend: {
-          show: false,
-          position: 'right',
-          float: 'right',
-          padding: 5,
-          margin: 5,
-          borderColor: '#fff',
-          borderWidth: 0,
-          fontSize: 13,
-          fontColor: '#666666',
-          lineHeight: 25,
-          hiddenColor: '#CECECE',
-          itemGap: 10
+          show: false
         },
+        silent: true,
         color: ['#FFD500', '#FF8640', '#6196FF', '#38BBBE'],
         seriesTemplate: {
           name: '',
           type: 'pie',
           data: [],
-          radius: ['65%', '85%'],
+          radius: ['80%', '100%'],
           avoidLabelOverlap: false,
           label: {
             show: false
@@ -78,7 +68,7 @@ export default {
   .echarts-box {
     position: relative;
     width: 50%;
-    height: 300rpx;
+    height: 240rpx;
     display: flex;
     align-items: center;
     .count-box {

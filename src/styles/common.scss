@@ -30,11 +30,13 @@
   text-align: center;
 }
 
-.t-l, .left {
+.t-l,
+.left {
   text-align: left;
 }
 
-.t-r, .right {
+.t-r,
+.right {
   text-align: right;
 }
 
@@ -42,11 +44,19 @@
   margin-top: 32rpx;
 }
 
-// 字体
+
+// 文字
 .f-fo {
   font-family: Oswald Bold;
 }
 
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 字体
 .f48 {
   font-size: 48rpx;
 }
@@ -80,7 +90,7 @@
   font-size: 24rpx;
 }
 
-.f22{
+.f22 {
   font-size: 22rpx;
 }
 
@@ -127,12 +137,12 @@
 }
 
 
-.hidden-scroll{
+.hidden-scroll {
   height: 100vh;
   overflow: hidden;
 }
 
-.open-scroll{
+.open-scroll {
   height: auto;
   overflow: auto;
 }

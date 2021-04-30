@@ -1,14 +1,14 @@
 <template>
   <view class="navbar-contaiiner">
     <view class="nav-bar">
-      <view class="nav-left flex flex-y-center" @click="back">
+      <view class="nav-left flex f-y-center" @click="back">
         <image
           v-if="isBack"
           class="back-icon"
           src="../../../static/images/back.png"
           mode="scaleToFill"
         />
-        <text :class="{'center': align==='center'}" class="nav-title f40 f-w6 t-c">{{title}}</text>
+        <text :class="[align]" class="nav-title f40 f-w6 t-c">{{title}}</text>
       </view>
       <view class="nav-right"><slot></slot></view>
     </view>
@@ -49,7 +49,7 @@ export default {
       align-items: center;
       justify-content: space-between;
       background-color: #fff;
-      z-index: 9;
+      z-index: 99;
       .nav-left{
         width: 100%;
         .back-icon{

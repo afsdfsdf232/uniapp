@@ -24,7 +24,7 @@ export default {
   width: 100%;
   height: 150rpx;
   background-color: #f5f5fa;
-  border-radius: 12rpx;
+  border-radius: 16rpx;
   .statistics-item {
     width: 207rpx;
     view {

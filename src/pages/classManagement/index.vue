@@ -53,8 +53,8 @@
       <!-- 计划名称 -->
       <view class="plan-title-content">
         <view class="plan-name f40 f-w6">男女通用体考冲刺计划</view>
-        <view class="plan-sub-title f28">
-          <text class="tag-bg f22">第6天</text>
+        <view class="plan-sub-title f28 flex f-y-center">
+          <view class="tag-bg f22 t-c">第6天</view>
           <text>无脑疯狂鬼畜训练</text>
         </view>
       </view>
@@ -63,17 +63,24 @@
         <view class="title f32 f-w8">完成情况</view>
         <completion :chartData="chartData" :chartTitle="chartTitle" />
         <!-- 分数，时间统计 -->
-        <statistics-panel :prop="statisticsPanel" />
+        <statistics-panel class="statistics-panel" :prop="statisticsPanel" />
         <!-- 提醒栏 -->
         <reminder-card title="待补练" count="10" @remind-click="remindClick(1)" />
-        <reminder-card title="待完成" count="20" @remind-click="remindClick(2)" />
+        <!-- <reminder-card title="待完成" count="20" @remind-click="remindClick(2)" /> -->
         <!-- 运动感受 -->
         <view class="feel-row">
           <feeling-movement />
         </view>
         <!-- 实时排名 -->
         <view class="ranking-row">
-          <view class="ranking-title f32 f-w">实时排名</view>
+          <view class="ranking-title f32 f-w flex f-y-center">实时排名
+          <image
+            @click="rankingRule= true"
+            class="problem-icon"
+            src="../../static/images/problem-icon.png"
+            mode="scaleToFill"
+          />
+          </view>
           <ranking-list />
         </view>
         <!-- 查看计划详情 -->
@@ -92,13 +99,13 @@
       >
       <view class="hot-list-container">
         <view class="hot-list-row">
-          <view class="hot-list-col">
+          <view class="hot-list-col hot-list-col-left ">
             <image
               class="hot-img"
               src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
               mode="scaleToFill"
             />
-            <text class="hot-name f30 f-w4">开合跳</text>
+            <text class="hot-name f30 f-w4 text-ellipsis">开合跳开合跳开合跳开合跳开合跳开合跳开合跳开合跳开合跳开合跳开合跳开合跳开合跳开合跳开合跳开合跳开合跳开合跳开合跳</text>
           </view>
           <view class="hot-list-col">
             <text class="hot-num f30 f-w4">96</text>
@@ -351,7 +358,7 @@
             <view class="f30 row1">四年级1班 <text class="f40 f-w6">12</text> 人 </view>
             <view class="row2">已设置休息日20:00自动提醒</view>
           </view>
-          <view hover-class="u-hover-class" class="footer-btn-right f28 f-w6 t-c">
+          <view @click="remiState=true" hover-class="u-hover-class" class="footer-btn-right f28 f-w6 t-c">
             一键提醒
           </view>
         </view>
@@ -359,24 +366,9 @@
     </ug-popup-bottom>
 
   <!-- 点击提醒弹窗 -->
-  <ug-popup
-    mode="center"
-    v-model="remiState"
-    height="488rpx"
-    width="640rpx"
-    border-radius="24"
-    :safe-area-inset-bottom="true"
-    :closeable="true"
-    close-icon-pos="top-right"
-  >
-    <view class="confirm-container">
-      <view class="f34 f-w5 t-c title"> 是否向您管理的全部班级的未完成学生发送提醒</view>
-      <view class="flex f-center">
-        <view @click="confirmSend(1)" hover-class="u-hover-class" class="confirm-btn t-c f34 f-w4">全部发送</view>
-      </view>
-      <view><view @click="confirmSend(2)" hover-class="u-hover-class" class="confirm-sub-btn t-c f34 f-w4">仅本班</view></view>
-    </view>
-  </ug-popup>
+  <remind-confirm @close="remiState=false" @confirm="confirmSend" :visible="remiState"/>
+  <!-- 排名提示弹窗 -->
+  <ranking-rule title="实时排名" :list="rankingRuleList"  :visible="rankingRule"  @close="rankingRule=false"/>
   </view>
 </template>
 <script>
@@ -390,6 +382,8 @@ import FeelingMovement from './components/FeelingMovement'
 import RankingList from './components/RankingList'
 import EmptyPlan from './components/EmptyPlan'
 import PlanTag from './components/PlanTag'
+import RemindConfirm from './components/RemindConfirm'
+import RankingRule from './components/RankingRule'
 export default {
   data () {
     return {
@@ -399,6 +393,12 @@ export default {
       remindPopup: false, // 待补练弹窗开闭状态
       completeProp: false, // 待完成弹窗开闭状态
       remiState: false, // 点击一键提醒发送弹窗状态
+      rankingRule: false, // 排名提示弹窗
+      rankingRuleList: [
+        '1.更新时间: 校排名实时更新，区、市、省排名每3小时更新',
+        '2.排名依据：按班级今日训练的平均得分，从高到低排名',
+        '3.计算公式：·平均得分=学生今日训练成绩之和*今日完成率',
+        'tips·学生的补练成绩也会纳入班级排名统计, 记得提醒学生补练哦'],
       chartData: {
         series: [
           {
@@ -453,7 +453,9 @@ export default {
     'feeling-movement': FeelingMovement,
     'ranking-list': RankingList,
     'empty-plan': EmptyPlan,
-    'plan-tag': PlanTag
+    'plan-tag': PlanTag,
+    'remind-confirm': RemindConfirm,
+    'ranking-rule': RankingRule
   },
   onLoad (options) {
     uni.$on('scrollState', (state) => {
@@ -495,7 +497,7 @@ export default {
       // this.scrollPage = true
     },
     confirmSend () {
-      this.remiState = false
+      // this.remiState = false
       uni.showToast({
         title: '操作成功',
         icon: 'success',
@@ -519,9 +521,10 @@ export default {
     padding: 40rpx 40rpx 0;
     background-color: #fff;
     z-index: 9;
+    // border: 1px solid red;
   }
   .sticky-box {
-    height: 400rpx;
+    height: 349rpx;
   }
   .class-tabs {
     display: flex;
@@ -540,9 +543,11 @@ export default {
   }
   .date-row {
     box-sizing: border-box;
-    padding: 40rpx 0 50rpx;
+    padding: 40rpx 0 10rpx;
   }
   .overview-row {
+    box-sizing: border-box;
+    padding: 40rpx 40rpx 32rpx;
     .row-count {
       .name {
         color: $uni-text-color;
@@ -574,19 +579,20 @@ export default {
   }
   .plan-row {
     position: relative;
+    box-sizing: border-box;
+    padding: 72rpx 40rpx 40rpx;
     margin-top: 32rpx;
     .plan-title-content {
-      margin-top: 70rpx;
       .plan-name {
         color: $uni-text-color;
       }
       .plan-sub-title {
         box-sizing: border-box;
-        padding: 5rpx 8rpx;
+        padding-top: 8rpx;
         color: $uni-text-color-grey;
         .tag-bg {
-          box-sizing: border-box;
-          padding: 0 8rpx;
+          width: 74rpx;
+          line-height: 40rpx;
           border-radius: 8rpx;
           margin-right: 16rpx;
           background-color: #e2fbf2;
@@ -596,26 +602,36 @@ export default {
     }
     .plan-completion {
       width: 100%;
+      box-sizing: border-box;
+      padding: 64rpx 0 0;
       .title {
         box-sizing: border-box;
-        padding: 60rpx 0 20rpx;
+        padding-bottom: 40rpx;
         color: $uni-text-color;
+      }
+      .statistics-panel{
+        margin-top: 40rpx;
       }
     }
 
     .feel-row {
-      margin: 32rpx 0;
+      margin-top: 32rpx;
     }
     .ranking-row {
       .ranking-title {
         margin: 32rpx 0 24rpx;
-        color: $uni-text-color;
+        color: $uni-text-color
+      }
+      .problem-icon{
+        width: 40rpx;
+        height: 40rpx;
+        margin-left: 8rpx;
       }
     }
     .detail-btn {
       display: flex;
       justify-content: center;
-      margin: 40rpx 0 8rpx;
+      margin: 40rpx 0 0;
       view {
         width: 180rpx;
         color: $uni-color-primary;
@@ -623,9 +639,11 @@ export default {
     }
   }
   .hot-item-row {
+    box-sizing: border-box;
+    padding: 40rpx;
     margin-top: 32rpx;
     .hot-title {
-      margin: 40rpx 0 8rpx;
+      margin: 0 0 8rpx;
       color: $uni-text-color;
     }
     .hot-sub-title {
@@ -640,8 +658,9 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        height: 184rpx;
         box-sizing: border-box;
-        padding: 32rpx 24rpx;
+        padding: 0 24rpx;
         &:nth-of-type(even) {
           background-color: #f5f5fa;
         }
@@ -649,11 +668,18 @@ export default {
           border-bottom-left-radius: 20rpx;
           border-bottom-right-radius: 20rpx;
         }
+        .hot-list-col-left{
+          max-width: 85%;
+          .hot-name{
+            width: calc( 100% - 144rpx);
+          }
+        }
         .hot-list-col {
           display: flex;
           align-items: center;
           .hot-name,
           .hot-num {
+            display: inline-block;
             margin-left: 24rpx;
             color: $uni-text-color;
           }
@@ -749,25 +775,6 @@ export default {
         background-color: $uni-btn-bg-primary;
 
       }
-    }
-  }
-  // 确认弹窗
-  .confirm-container {
-    color: $uni-text-color;
-    .title {
-      line-height: 48rpx;
-    }
-    .confirm-btn{
-      margin: 64rpx 0 32rpx;
-      width: 400rpx;
-      height: 88rpx;
-      line-height: 88rpx;
-      border-radius: 44rpx;
-      background-color: $uni-btn-bg-primary;
-      color: #fff;
-    }
-    .confirm-sub-btn{
-      color: $uni-btn-color-primary;
     }
   }
 }

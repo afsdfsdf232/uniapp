@@ -1,10 +1,10 @@
 <template>
   <!-- 运动感受 -->
   <view class="feeling-container">
-    <view class="feel-title">运动感受</view>
+    <view class="feel-title f-w6">运动感受</view>
     <view class="list">
       <view class="item">
-        <view class="count f30 f-fo">26</view>
+        <view class="count f30 f-fo f-w">26</view>
         <image
           class="img"
           src="../../../static/images/relaxed-icon.png"
@@ -13,7 +13,7 @@
         <view class="desc f24 f-w4">很轻松</view>
       </view>
       <view class="item">
-        <view class="count f30 f-fo">78</view>
+        <view class="count f30 f-fo f-w">78</view>
         <image
           class="img"
           src="../../../static/images/commonly-icon.png"
@@ -22,7 +22,7 @@
         <view class="desc f24 f-w4">一般般</view>
       </view>
       <view class="item">
-        <view class="count f30 f-fo">16</view>
+        <view class="count f30 f-fo f-w">16</view>
         <image
           class="img"
           src="../../../static/images/hard-icon.png"
@@ -36,15 +36,14 @@
 <style lang="scss" scoped>
 .feeling-container {
   .feel-title {
-    margin-bottom: 32rpx;
     font-size: 32rpx;
-    color: $uni-text-color;
-    font-weight: bold;
+    color: $uni-text-color
   }
   .list {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 262rpx;
     .item {
       width: 207rpx;
       text-align: center;
@@ -54,8 +53,7 @@
         margin: 16rpx 0 8rpx;
       }
       .count {
-        color: $uni-text-color;
-        font-weight: bold;
+        color: $uni-text-color
       }
       .desc {
         color: $uni-text-color-grey2;

@@ -38,10 +38,10 @@ export default {
   height: 120rpx;
   .remind-left {
     .desc {
-      margin-left: 18rpx;
+      margin-left: 16rpx;
       color: $uni-text-color;
       text {
-        margin: 0 4rpx
+        margin: 0 8rpx
       }
     }
     .warning-icon{

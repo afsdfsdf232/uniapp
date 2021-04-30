@@ -50,7 +50,9 @@
       <!-- 提醒功能 -->
       <reminder-card />
       <!-- 运动感受 -->
-      <feeling-movement />
+      <view class="feeling-movement">
+<feeling-movement />
+      </view>
       <!-- 班级排名 -->
       <view class="class-ranking">
         <view class="ranking-title flex f-y-center">
@@ -132,27 +134,7 @@
       </view>
     </view>
     <!-- 排名规则说明弹窗 -->
-    <ug-popup
-      v-model="rankingRule"
-      border-radius="24"
-      :mask="true"
-      :safe-area-inset-bottom="true"
-      width="680rpx"
-      height="800rpx"
-      mode="center"
-    >
-      <view class="rule-desc">
-        <view class="rule-title t-c f40 f-w6 f-fp">排名规则说明</view>
-        <view class="f34 f-w4 t-l">1.更新时间: 校排名实时更新，区、市、省排名每3小时更新</view>
-        <view class="f34 f-w4 t-l"> 2.排名依据：按班级今日训练的平均得分，从高到低排名</view>
-        <view class="f34 f-w4 t-l"> 3.计算公式：平均得分=学生今日训练成绩之和*今日完成率</view>
-        <view class="f34 f-w4 t-l">
-          4.提示：学生的补练成绩也会纳入班级排名统计, 记得提醒学生补练哦</view
-        >
-      </view>
-      <u-line color="#E5E5E5"></u-line>
-        <view class="btn t-c f36 f-w5" @click="rankingRule= false">我知道了</view>
-    </ug-popup>
+
   </view>
 </template>
 <script>
@@ -236,7 +218,7 @@ export default {
       color: $uni-text-color
     }
     .tag-box {
-      margin: 16rpx 0 70rpx;
+      margin: 16rpx 0 0;
       width: 128rpx;
       height: 48rpx;
       line-height: 48rpx;
@@ -246,10 +228,10 @@ export default {
     }
     .current-press {
       .press-title {
+         margin: 72rpx 0 24rpx;
         color: $uni-text-color;
       }
       .press-desc {
-        margin: 24rpx 0 16rpx;
         .press-date {
           color: $uni-text-color
         }
@@ -261,11 +243,12 @@ export default {
     }
     .plan-completion {
       box-sizing: border-box;
-      padding: 70rpx 0 0;
+      padding: 65rpx 0 40rpx;
       .plan-completion-title {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: 40rpx;
         .left {
           .title {
             color: $uni-text-color
@@ -287,11 +270,15 @@ export default {
         }
       }
     }
+    .feeling-movement{
+      margin-top: 72rpx;
+    }
     .class-ranking {
       .ranking-title {
-        margin: 70rpx 0 24rpx;
+        margin: 72rpx 0 24rpx;
         color: $uni-text-color;
         .problem-icon{
+          margin-left: 8rpx;
           width: 40rpx;
           height: 40rpx;
         }
@@ -300,6 +287,7 @@ export default {
     .individual-result {
       margin-top: 72rpx;
       box-sizing: border-box;
+      padding: 0 0 40rpx;
       .individual-title {
         color: $uni-text-color
       }
@@ -366,26 +354,5 @@ export default {
       }
     }
   }
-  .rule-desc{
-    box-sizing: border-box;
-    padding: 64rpx 40rpx 48rpx;
-    .rule-title{
-      box-sizing: border-box;
-      padding: 0;
-      height: 56rpx;
-      color: $uni-text-color;
-      margin-bottom: 14rpx;
-    }
-    view{
-      box-sizing: border-box;
-      padding: 14rpx 0;
-    }
-  }
-      .btn{
-        height: 110rpx;
-        box-sizing: border-box;
-        padding: 30rpx 0 32rpx;
-        color: $uni-btn-color-primary;
-    }
 }
 </style>

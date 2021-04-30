@@ -51,10 +51,6 @@ export default {
     view {
       height: 72rpx;
       line-height: 72rpx;
-      // &:active {
-      //   box-shadow: 0 1rpx 9rpx 0 rgba(255, 134, 64, .95);
-      //   border-radius: 16rpx;
-      // }
       text {
         color: $uni-text-color;
       }
